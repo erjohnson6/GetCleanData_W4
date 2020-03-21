@@ -96,14 +96,14 @@ run_analysis <- function(data_wd = "./UCI HAR Dataset") {
      varName <- as.character(feature_labels[var_of_interest[1],2])
      summaryDataTbl <- summarize(allDataTbl, avg = mean(.data[[varName]]))
      groupNum <- length(groups(allDataTbl))
-     colnames(summaryDataTbl)[groupNum + 1] <- varName
+     colnames(summaryDataTbl)[groupNum + 1] <- paste(varName,"mean")
 
      for (i in 2:length(var_of_interest)) {
           varName <- as.character(feature_labels[var_of_interest[i],2])
           summaryDataTbl <- ungroup(summaryDataTbl)
           summaryDataTbl <- as.tbl(cbind(summaryDataTbl,
                                          summarize(allDataTbl, avg = mean(.data[[varName]]))[,groupNum + 1]))
-          colnames(summaryDataTbl)[groupNum + i] <- varName
+          colnames(summaryDataTbl)[groupNum + i] <- paste(varName,"mean")
           
      }
      
